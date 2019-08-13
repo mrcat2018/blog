@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;#x6301;&amp;#x7EED;&amp;#x66F4;&amp;#x65B0; &amp;#x51B3;&amp;#x7B56;&amp;#x6811; ID3  C4.5  CART cart  &amp;#x96C6;&amp;#x6210;&amp;#x5B66;&amp;#x4E60; &amp;#x968F;&amp;#x673A;&amp;#x68EE;&amp;#x6797; adaboost adaboost gdbt bagging  LRsvmLSTM LSTM &amp;#x6A21">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习知识点">
+<meta property="og:url" content="https://mrcat2018.github.io/blog/2019/08/13/基础算法练习/机器学习/机器学习知识点/index.html">
+<meta property="og:site_name" content="猫先生的网络日志">
+<meta property="og:description" content="&amp;#x6301;&amp;#x7EED;&amp;#x66F4;&amp;#x65B0; &amp;#x51B3;&amp;#x7B56;&amp;#x6811; ID3  C4.5  CART cart  &amp;#x96C6;&amp;#x6210;&amp;#x5B66;&amp;#x4E60; &amp;#x968F;&amp;#x673A;&amp;#x68EE;&amp;#x6797; adaboost adaboost gdbt bagging  LRsvmLSTM LSTM &amp;#x6A21">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-13T14:23:09.818Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习知识点">
+<meta name="twitter:description" content="&amp;#x6301;&amp;#x7EED;&amp;#x66F4;&amp;#x65B0; &amp;#x51B3;&amp;#x7B56;&amp;#x6811; ID3  C4.5  CART cart  &amp;#x96C6;&amp;#x6210;&amp;#x5B66;&amp;#x4E60; &amp;#x968F;&amp;#x673A;&amp;#x68EE;&amp;#x6797; adaboost adaboost gdbt bagging  LRsvmLSTM LSTM &amp;#x6A21">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mrcat2018.github.io/blog/2019/08/13/基础算法练习/机器学习/机器学习知识点/">
+
+
+
+
+
+  <title>机器学习知识点 | 猫先生的网络日志</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">猫先生的网络日志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mrcat2018.github.io/blog/blog/2019/08/13/基础算法练习/机器学习/机器学习知识点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="猫先生">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="猫先生的网络日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习知识点</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-13T22:23:53+08:00">
+                2019-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x6301;&#x7EED;&#x66F4;&#x65B0;</p>
+<h2 id="&#x51B3;&#x7B56;&#x6811;"><a href="#&#x51B3;&#x7B56;&#x6811;" class="headerlink" title="&#x51B3;&#x7B56;&#x6811;"></a>&#x51B3;&#x7B56;&#x6811;</h2><ol>
+<li>ID3 </li>
+<li>C4.5 </li>
+<li>CART <a href="https://mrcat2018.github.io/blog/2019/03/21/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/cart/cart/">cart</a></li>
+</ol>
+<h2 id="&#x96C6;&#x6210;&#x5B66;&#x4E60;"><a href="#&#x96C6;&#x6210;&#x5B66;&#x4E60;" class="headerlink" title="&#x96C6;&#x6210;&#x5B66;&#x4E60;"></a>&#x96C6;&#x6210;&#x5B66;&#x4E60;</h2><ol>
+<li>&#x968F;&#x673A;&#x68EE;&#x6797;</li>
+<li>adaboost <a href="https://mrcat2018.github.io/blog/2019/03/23/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/adaboost/adaboost/#more">adaboost</a></li>
+<li>gdbt</li>
+<li>bagging</li>
+</ol>
+<p>LR<br>svm<br>LSTM <a href="https://mrcat2018.github.io/blog/2019/04/02/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/LSTM/LSTM/#more">LSTM</a></p>
+<h2 id="&#x6A21;&#x5F0F;&#x8BC6;&#x522B;"><a href="#&#x6A21;&#x5F0F;&#x8BC6;&#x522B;" class="headerlink" title="&#x6A21;&#x5F0F;&#x8BC6;&#x522B;"></a>&#x6A21;&#x5F0F;&#x8BC6;&#x522B;</h2><p>(<a href="https://blog.csdn.net/qq_28620327/article/details/82345511">https://blog.csdn.net/qq_28620327/article/details/82345511</a>)</p>
+<ol>
+<li>K-Nearest Neighbor</li>
+<li>Bayes Classifier</li>
+<li>Principle Component Analysis(PCA)</li>
+<li>Linear Discriminant Analysis(LDA)</li>
+<li>Non-negative Matrix Factorization  (<a href="http://chnfyn.blog.163.com/blog/static/26954632200751625243295/">http://chnfyn.blog.163.com/blog/static/26954632200751625243295/</a>)</li>
+<li>Gaussian Mixture Model</li>
+</ol>
+<h2 id="&#x95EE;&#x9898;"><a href="#&#x95EE;&#x9898;" class="headerlink" title="&#x95EE;&#x9898;"></a>&#x95EE;&#x9898;</h2><p>&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;<br>SVM&#x7684;&#x539F;&#x7406;&#x53CA;&#x516C;&#x5F0F;&#x63A8;&#x5BFC;<br>&#x6734;&#x7D20;&#x8D1D;&#x53F6;&#x65AF;&#x7684;&#x516C;&#x5F0F;<br>Bagging &#x548C; Boosting&#x7684;&#x533A;&#x522B;<br>GBDT&#x7684;&#x53C2;&#x6570;&#x600E;&#x4E48;&#x8C03;<br>&#x805A;&#x7C7B;&#x8FC7;&#x7A0B;<br>&#x504F;&#x5DEE;&#x548C;&#x65B9;&#x5DEE;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x9AD8;&#x504F;&#x5DEE;&#x548C;&#x9AD8;&#x65B9;&#x5DEE;&#x8BF4;&#x660E;&#x4E86;&#x4EC0;&#x4E48;<br>&#x600E;&#x4E48;&#x7406;&#x89E3;&#x635F;&#x5931;&#x51FD;&#x6570;&#xFF0C;SVM&#x7684;&#x635F;&#x5931;&#x51FD;&#x6570;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x5199;&#x51FA;&#x516C;&#x5F0F;<br>&#x8FC7;&#x62DF;&#x5408;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#xFF0C;L1&#x548C;L2&#x6B63;&#x5219;&#x5316;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;<br>&#x4E3A;&#x4EC0;&#x4E48;&#x7528;&#x6700;&#x5C0F;&#x4E8C;&#x4E58;&#x800C;&#x4E0D;&#x662F;&#x6700;&#x5C0F;&#x56DB;&#x4E58;<br>GB&#x548C;&#x725B;&#x987F;&#x6CD5;&#x7684;&#x533A;&#x522B;&#xFF0C;&#x5B83;&#x4EEC;&#x548C;&#x6CF0;&#x52D2;&#x516C;&#x5F0F;&#x7684;&#x5173;&#x7CFB;</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/08/13/python/python中的一些符号/" rel="next" title="python [::2] 什么意思">
+                <i class="fa fa-chevron-left"></i> python [::2] 什么意思
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2019/08/13/基础算法练习/机器学习/adaboost/adaboost/" rel="prev" title="adaboost">
+                adaboost <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzNy8xNjQ2NA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">猫先生</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树"><span class="nav-number">1.</span> <span class="nav-text">决策树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集成学习"><span class="nav-number">2.</span> <span class="nav-text">集成学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式识别"><span class="nav-number">3.</span> <span class="nav-text">模式识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫先生</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

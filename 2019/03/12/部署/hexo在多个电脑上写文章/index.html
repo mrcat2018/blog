@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="hexo,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#x4E4B;&amp;#x524D;&amp;#x7528;hexo&amp;#x8BD5;&amp;#x4E86;&amp;#x8BD5;&amp;#x6C34;,&amp;#x5F53;&amp;#x65F6;&amp;#x611F;&amp;#x89C9;hexo&amp;#x5199;&amp;#x6587;&amp;#x7AE0;&amp;#x5E76;&amp;#x90E8;&amp;#x7F72;&amp;#x5230">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo在多个电脑上写文章">
+<meta property="og:url" content="https://mrcat2018.github.io/blog/2019/03/12/部署/hexo在多个电脑上写文章/index.html">
+<meta property="og:site_name" content="猫先生的网络日志">
+<meta property="og:description" content="&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#x4E4B;&amp;#x524D;&amp;#x7528;hexo&amp;#x8BD5;&amp;#x4E86;&amp;#x8BD5;&amp;#x6C34;,&amp;#x5F53;&amp;#x65F6;&amp;#x611F;&amp;#x89C9;hexo&amp;#x5199;&amp;#x6587;&amp;#x7AE0;&amp;#x5E76;&amp;#x90E8;&amp;#x7F72;&amp;#x5230">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-13T14:23:09.844Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo在多个电脑上写文章">
+<meta name="twitter:description" content="&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#x4E4B;&amp;#x524D;&amp;#x7528;hexo&amp;#x8BD5;&amp;#x4E86;&amp;#x8BD5;&amp;#x6C34;,&amp;#x5F53;&amp;#x65F6;&amp;#x611F;&amp;#x89C9;hexo&amp;#x5199;&amp;#x6587;&amp;#x7AE0;&amp;#x5E76;&amp;#x90E8;&amp;#x7F72;&amp;#x5230">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mrcat2018.github.io/blog/2019/03/12/部署/hexo在多个电脑上写文章/">
+
+
+
+
+
+  <title>hexo在多个电脑上写文章 | 猫先生的网络日志</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">猫先生的网络日志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mrcat2018.github.io/blog/blog/2019/03/12/部署/hexo在多个电脑上写文章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="猫先生">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="猫先生的网络日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hexo在多个电脑上写文章</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-12T16:13:00+08:00">
+                2019-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/部署/" itemprop="url" rel="index">
+                    <span itemprop="name">部署</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#x4E4B;&#x524D;&#x7528;hexo&#x8BD5;&#x4E86;&#x8BD5;&#x6C34;,&#x5F53;&#x65F6;&#x611F;&#x89C9;hexo&#x5199;&#x6587;&#x7AE0;&#x5E76;&#x90E8;&#x7F72;&#x5230;github&#x633A;&#x65B9;&#x4FBF;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x5565;&#x5199;&#x7684;&#x5C31;&#x653E;&#x4E0B;&#x4E86;&#x3002;&#x534A;&#x5E74;&#x540E;&#x611F;&#x89C9;&#x8981;&#x5F00;&#x59CB;&#x5199;&#x70B9;&#x4E1C;&#x897F;&#x4E86;&#x3002;&#x51C6;&#x5907;&#x5199;&#x65F6;&#x5C31;&#x53D1;&#x73B0;&#x4E86;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x600E;&#x4E48;&#x5728;&#x591A;&#x4E2A;&#x8BBE;&#x5907;&#x4E4B;&#x95F4;&#x540C;&#x6B65;&#x3002;&#x641C;&#x4E86;&#x5F88;&#x591A;&#x6559;&#x7A0B;&#xFF0C;&#x89C9;&#x5F97;<a href="https://www.jianshu.com/p/beb8d611340a">&#x8FD9;&#x4E2A;&#x6559;&#x7A0B;</a> &#x8FD8;&#x53EF;&#x4EE5;&#xFF0C;&#x5C31;&#x662F;&#x8BF4;&#x7684;&#x6709;&#x70B9;&#x7B80;&#x5355;&#x4E86;&#x3002;</p>
+<h2 id="&#x524D;&#x63D0;&#x6761;&#x4EF6;"><a href="#&#x524D;&#x63D0;&#x6761;&#x4EF6;" class="headerlink" title="&#x524D;&#x63D0;&#x6761;&#x4EF6;"></a>&#x524D;&#x63D0;&#x6761;&#x4EF6;</h2><blockquote>
+<p>&#x5FC5;&#x987B;&#x6709;hexo&#x7684;&#x5168;&#x90E8;&#x5DE5;&#x7A0B;&#x6587;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x53EA;&#x6709;&#x4E4B;&#x524D;&#x4E0A;&#x4F20;&#x5728;github&#x7684;&#x6587;&#x7AE0;&#xFF0C;&#x90A3;&#x53EA;&#x80FD;&#x65B0;&#x5EFA;hexo&#x9879;&#x76EE;&#x4E86;&#x3002;</p>
+</blockquote>
+<h2 id="&#x539F;&#x7406;"><a href="#&#x539F;&#x7406;" class="headerlink" title="&#x539F;&#x7406;"></a>&#x539F;&#x7406;</h2><blockquote>
+<p>git &#x7BA1;&#x7406;&#x4E24;&#x4E2A;&#x5206;&#x652F;&#xFF0C;&#x4E00;&#x4E2A;master&#x5206;&#x652F;&#xFF0C;&#x4E00;&#x4E2A;src&#x5206;&#x652F;&#x3002;master&#x5206;&#x652F;&#x7531;src&#x5206;&#x652F;&#x901A;&#x8FC7;hexo g -d &#x751F;&#x6210;&#x5E76;&#x4E0A;&#x4F20;&#x5230;&#x8FDC;&#x7AEF;&#x3002;src&#x5206;&#x652F;&#x4FDD;&#x7559;&#x5DE5;&#x7A0B;&#x5FC5;&#x987B;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x4EE5;&#x4FBF;&#x5728;&#x5176;&#x4ED6;&#x7535;&#x8111;clone&#x540E;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5199;&#x6587;&#x7AE0;&#x3002;</p>
+</blockquote>
+<h2 id="&#x5F00;&#x59CB;"><a href="#&#x5F00;&#x59CB;" class="headerlink" title="&#x5F00;&#x59CB;"></a>&#x5F00;&#x59CB;</h2><ol>
+<li><p>&#x5728;blog&#x76EE;&#x5F55;&#x4E0B;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;src&#x5206;&#x652F;</p>
+<blockquote>
+<p>git checkout -b src<br>git branch &#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5F53;&#x524D;&#x7684;&#x5206;&#x652F;</p>
+</blockquote>
+</li>
+<li><p>&#x6DFB;&#x52A0;&#x5168;&#x90E8; </p>
+<blockquote>
+<p>git add .</p>
+</blockquote>
+</li>
+<li>&#x63D0;&#x4EA4;&#x5230;&#x672C;&#x5730;<blockquote>
+<p>git commmit -m &#x201C;&#x65B0;&#x5EFA;&#x6E90;&#x5206;&#x652F;&#x201D;</p>
+</blockquote>
+</li>
+<li>&#x63A8;&#x9001;&#x5230;github (&#x8FD9;&#x4E00;&#x6B65;&#x53EF;&#x80FD;&#x4F1A;&#x8981;&#x6C42;&#x8F93;&#x5165;github&#x8D26;&#x53F7;&#x548C;&#x5BC6;&#x7801;)<blockquote>
+<p>git push origin src</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="&#x600E;&#x4E48;&#x4F7F;&#x7528;&#x5462;&#x3002;"><a href="#&#x600E;&#x4E48;&#x4F7F;&#x7528;&#x5462;&#x3002;" class="headerlink" title="&#x600E;&#x4E48;&#x4F7F;&#x7528;&#x5462;&#x3002;"></a>&#x600E;&#x4E48;&#x4F7F;&#x7528;&#x5462;&#x3002;</h2><blockquote>
+<p>&#x5728;&#x53E6;&#x4E00;&#x4E2A;&#x8BBE;&#x5907;&#x4E0A;&#x514B;&#x9686;src&#x5206;&#x652F;<br> git clone -b src <a href="https://github.com/XXX/blog.git">https://github.com/XXX/blog.git</a><br> &#x56E0;&#x4E3A;&#x4E4B;&#x524D;&#x4E0A;&#x4F20;&#x7684;&#x9879;&#x76EE;&#x662F;&#x6CA1;&#x6709;&#x6A21;&#x5757;&#x7684;&#xFF0C;&#x6B64;&#x65F6;&#x8FD8;&#x9700;&#x8981;&#x5B89;&#x88C5;hexo &#x6A21;&#x5757;<br> npm install(&#x6211;&#x5ACC;npm&#x592A;&#x6162;&#xFF0C;&#x7528;&#x7684;&#x6DD8;&#x5B9D;&#x7684;cnpm install)<br> &#x4E4B;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x5728;source/_post&#x4E0B;&#x5199;&#x6587;&#x7AE0;&#x4E86;&#x3002;<br> &#x53D1;&#x5E03;&#x8FD8;&#x662F; hexo g -d<br> &#x5199;&#x5B8C;&#x540E;&#x8981;&#x5C06;&#x6E90;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;<br> &#x5728;blog&#x76EE;&#x5F55;&#x4E0B;<br> git add .<br> git commit -m &#x201C;&#x65B0;&#x589E;&#x4E86;&#x7BC7;&#x6587;&#x7AE0;&#x201D;<br> git push origin src</p>
+</blockquote>
+<p>&#x5927;&#x529F;&#x544A;&#x6210;</p>
+<h2 id="&#x53EF;&#x80FD;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;"><a href="#&#x53EF;&#x80FD;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="&#x53EF;&#x80FD;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;"></a>&#x53EF;&#x80FD;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;</h2><ol>
+<li><p>WARN No layout: index.html &#x8FD9;&#x662F;&#x7531;&#x4E8E;&#x4E3B;&#x9898;&#x6587;&#x4EF6;&#x7F3A;&#x5931;&#x9020;&#x6210;&#x7684;&#xFF0C;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x89E3;&#x51B3;&#x3002;</p>
+<blockquote>
+<ol>
+<li>&#x76F4;&#x63A5;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#x76F8;&#x5173;&#x4E3B;&#x9898;&#x6587;&#x4EF6;&#x5230;&#x9879;&#x76EE;&#x7684;theme&#x76EE;&#x5F55;&#x4E0B;&#x9762;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd your-hexo-site</span><br><span class="line">$ git clone https://github.com/mrcat2018/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>&#x8FD9;&#x6837;&#x505A;&#xFF0C;&#x6BCF;&#x6B21;&#x5728;&#x65B0;&#x7684;&#x8BBE;&#x5907;&#x4E0A;&#x90FD;&#x5F97;&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#xFF0C;&#x5982;&#x679C;&#x4FEE;&#x6539;&#x4E86;&#x4E3B;&#x9898;&#x7684;&#x6837;&#x5F0F;&#xFF0C;&#x8FD8;&#x4E0D;&#x4F1A;&#x540C;&#x6B65;&#x5230;github&#x4E0A;&#xFF0C;&#x53EA;&#x4F1A;&#x540C;&#x6B65;&#x5230;&#x6587;&#x7AE0;&#x53D1;&#x5E03;&#x7684;master&#x5206;&#x652F;&#x4E0A;&#x3002;&#x4E0D;&#x63A8;&#x8350;</p>
+<ol start="2">
+<li>&#x81EA;&#x5DF1;&#x5148;fork&#x4E00;&#x4EFD;&#x4E3B;&#x9898;&#x6587;&#x4EF6;&#x5230;&#x81EA;&#x5DF1;&#x7684;&#x8FDC;&#x7AEF;&#x4ED3;&#x5E93;&#xFF0C;&#x7136;&#x540E;&#x7ED9;blog&#x9879;&#x76EE;&#x6DFB;&#x52A0;&#x5B50;&#x6A21;&#x5757;&#x3002;&#x600E;&#x4E48;fork&#x5C31;&#x4E0D;&#x8BF4;&#x4E86;&#x3002;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd your-hexo-site</span><br><span class="line">$ git submodule add https://github.com/mrcat2018/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>&#x8FD9;&#x6837;&#x4FEE;&#x6539;&#x6837;&#x5F0F;&#x540E;&#x53EF;&#x4EE5;&#x63D0;&#x4EA4;&#x5230;&#x8FDC;&#x7AEF;&#x4ED3;&#x5E93;&#xFF0C;&#x4FDD;&#x8BC1;&#x6BCF;&#x6B21;clone&#x65F6;&#x90FD;&#x662F;&#x81EA;&#x5DF1;&#xFF08;&#x53EF;&#x80FD;&#x505A;&#x8FC7;&#x4FEE;&#x6539;&#xFF09;&#x7684;&#x4E3B;&#x9898;</p>
+</blockquote>
+<p> clone &#x65F6;&#x7684;&#x52A0;&#x4E0A; &#x2013;recursive</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone -b src https://github.com/XXX/blog.git --recursive</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fatal: in unpopulated submodule &#x2018;.deploy_git&#x2019;</p>
+<blockquote>
+<p>&#x4E00;&#x822C;&#x6267;&#x884C;&#x8FC7;npm install &#x90FD;&#x4F1A;&#x76F4;&#x63A5;&#x5728;&#x9879;&#x76EE;&#x7684;&#x4F9D;&#x8D56;&#x5305;&#x4E2D;&#x5B89;&#x88C5;&#x4E86;hexo-deployer-git&#x7684;&#xFF0C;&#x5148;&#x8003;&#x8651;&#x662F;&#x4E0D;&#x662F;git&#x7F13;&#x5B58;&#x4E0D;&#x4E00;&#x81F4;&#x9020;&#x6210;&#x7684;&#x3002;</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm -r --cached .deploy_git</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p> &#x8FD8;&#x662F;&#x4E0D;&#x884C;&#x90A3;&#x53EF;&#x80FD;&#x662F;&#x5305;&#x6CA1;&#x5B89;&#x88C5;</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install hexo-deployer-git &#x2013;save</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/hexo/" rel="tag"># hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/03/12/部署/添加远程子模块/" rel="next" title="git 添加远程子模块">
+                <i class="fa fa-chevron-left"></i> git 添加远程子模块
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2019/03/14/基础算法练习/排序/基础练习之排序算法/" rel="prev" title="基础练习之排序算法">
+                基础练习之排序算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzNy8xNjQ2NA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">猫先生</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前提条件"><span class="nav-number">1.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">3.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么使用呢。"><span class="nav-number">4.</span> <span class="nav-text">怎么使用呢。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可能遇到的问题"><span class="nav-number">5.</span> <span class="nav-text">可能遇到的问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫先生</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

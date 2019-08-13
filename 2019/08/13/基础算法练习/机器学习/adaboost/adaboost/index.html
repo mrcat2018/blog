@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,adaboost,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;#x4E2A;&amp;#x4EBA;&amp;#x7406;&amp;#x89E3;adaboost&amp;#x662F;&amp;#x5C06;&amp;#x591A;&amp;#x4E2A;&amp;#x5F31;&amp;#x5206;&amp;#x7C7B;&amp;#x5668;&amp;#x7684;&amp;#x7ED3;&amp;#x679C;&amp;#x901A;&amp;#x8FC7;&amp;#x4E00;&amp;#x4E2A;alpha&amp;#x7CFB;&amp;#x6570;&amp;#x7EBF;&amp;#x6027;&amp;#x">
+<meta name="keywords" content="机器学习,adaboost">
+<meta property="og:type" content="article">
+<meta property="og:title" content="adaboost">
+<meta property="og:url" content="https://mrcat2018.github.io/blog/2019/08/13/基础算法练习/机器学习/adaboost/adaboost/index.html">
+<meta property="og:site_name" content="猫先生的网络日志">
+<meta property="og:description" content="&amp;#x4E2A;&amp;#x4EBA;&amp;#x7406;&amp;#x89E3;adaboost&amp;#x662F;&amp;#x5C06;&amp;#x591A;&amp;#x4E2A;&amp;#x5F31;&amp;#x5206;&amp;#x7C7B;&amp;#x5668;&amp;#x7684;&amp;#x7ED3;&amp;#x679C;&amp;#x901A;&amp;#x8FC7;&amp;#x4E00;&amp;#x4E2A;alpha&amp;#x7CFB;&amp;#x6570;&amp;#x7EBF;&amp;#x6027;&amp;#x">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-13T14:23:09.807Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="adaboost">
+<meta name="twitter:description" content="&amp;#x4E2A;&amp;#x4EBA;&amp;#x7406;&amp;#x89E3;adaboost&amp;#x662F;&amp;#x5C06;&amp;#x591A;&amp;#x4E2A;&amp;#x5F31;&amp;#x5206;&amp;#x7C7B;&amp;#x5668;&amp;#x7684;&amp;#x7ED3;&amp;#x679C;&amp;#x901A;&amp;#x8FC7;&amp;#x4E00;&amp;#x4E2A;alpha&amp;#x7CFB;&amp;#x6570;&amp;#x7EBF;&amp;#x6027;&amp;#x">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mrcat2018.github.io/blog/2019/08/13/基础算法练习/机器学习/adaboost/adaboost/">
+
+
+
+
+
+  <title>adaboost | 猫先生的网络日志</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">猫先生的网络日志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mrcat2018.github.io/blog/blog/2019/08/13/基础算法练习/机器学习/adaboost/adaboost/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="猫先生">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="猫先生的网络日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">adaboost</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-13T22:23:53+08:00">
+                2019-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="&#x4E2A;&#x4EBA;&#x7406;&#x89E3;"><a href="#&#x4E2A;&#x4EBA;&#x7406;&#x89E3;" class="headerlink" title="&#x4E2A;&#x4EBA;&#x7406;&#x89E3;"></a>&#x4E2A;&#x4EBA;&#x7406;&#x89E3;</h1><p>adaboost&#x662F;&#x5C06;&#x591A;&#x4E2A;&#x5F31;&#x5206;&#x7C7B;&#x5668;&#x7684;&#x7ED3;&#x679C;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;alpha&#x7CFB;&#x6570;&#x7EBF;&#x6027;&#x7EC4;&#x5408;&#x5F97;&#x5230;&#x6700;&#x7EC8;&#x7684;&#x9884;&#x6D4B;&#x7ED3;&#x679C;&#xFF0C;&#x6BCF;&#x4E2A;&#x5F31;&#x5206;&#x7C7B;&#x5668;&#x5728;&#x8BA1;&#x7B97;&#x8BEF;&#x5DEE;&#x65F6;&#xFF0C;&#x662F;&#x6839;&#x636E;&#x6837;&#x4F8B;&#x7684;&#x6743;&#x91CD;&#x5F97;&#x5230;&#x7684;&#x52A0;&#x6743;&#x8BEF;&#x5DEE;&#xFF0C;&#x800C;&#x4E0B;&#x4E00;&#x6B21;&#x6743;&#x91CD;&#x7684;&#x66F4;&#x65B0;&#x4E0E;&#x8BE5;&#x5206;&#x7C7B;&#x5668;&#x7684;&#x8BEF;&#x5DEE;&#x6709;&#x5173;&#x3002;</p>
+<blockquote>
+</blockquote>
+<p> &#x6BCF;&#x4E2A;&#x5207;&#x5206;&#x4F1A;&#x6709;&#x4E00;&#x7EC4;&#x9884;&#x6D4B;&#x7ED3;&#x679C; P(&#x6837;&#x672C;&#x6570;&#x91CF;&#x7684;&#x5217;&#x5411;&#x91CF;)&#x7684;&#x6B63;&#x8BEF;Q(&#x548C;P&#x4E00;&#x6837;),&#x9884;&#x6D4B;&#x6B63;&#x786E;&#x7684;&#x4E3A;0 &#x9519;&#x8BEF;&#x7684;&#x4E3A;1&#xFF0C;&#x603B;&#x8BEF;&#x5DEE; = sum(W*Q) W &#x4E3A;&#x4E0A;&#x4E00;&#x8F6E;&#x7684;&#x6BCF;&#x4E2A;&#x6837;&#x672C;&#x7684;&#x6743;&#x91CD;,&#x4E0A;&#x4E00;&#x6B65;&#x7684;&#x8D1F;&#x4F8B;&#x6743;&#x503C;&#x4F1A;&#x5F88;&#x5927;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x91CC;&#x4E00;&#x8F6E;&#x8FD8;&#x662F;&#x8D1F;&#x4F8B;,&#x5219;&#x8BE5;&#x4F8B;&#x4EA7;&#x751F;&#x7684;errloss&#x8D21;&#x732E;&#x4F1A;&#x5F88;&#x5927;&#xFF0C;&#x53CD;&#x4E4B;&#x5219;errloss&#x8D21;&#x732E;&#x4F1A;&#x53D8;&#x4E3A;0&#x56E0;&#x4E3A;Q(&#x6B63;&#x4F8B;) = 0,&#x8FD9;&#x6837;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x8D1F;&#x53CD;&#x9988;&#xFF0C;&#x8BA9;&#x8D1F;&#x4F8B;&#x4E0D;&#x65AD;&#x7684;&#x8BAD;&#x7EC3;&#x3002;</p>
+<blockquote>
+<p>&#x4E00;&#x4E2A;&#x5207;&#x5206;&#x7684;&#x603B;&#x9519;&#x8BEF;&#x7387;&#x662F;&#x52A0;&#x6743;&#x9519;&#x8BEF;&#x7387; E = sum(W*Q)</p>
+</blockquote>
+<blockquote>
+<p>&#x8BA1;&#x7B97;alpha = 1/2(log((1-e)/e))</p>
+</blockquote>
+<blockquote>
+<p>&#x8BA1;&#x7B97;&#x6837;&#x4F8B;&#x7684;&#x6743;&#x91CD;W = W* exp(-alpha*T)/sum(W) &#x5176;&#x4E2D; &#x5BF9;&#x8BAD;&#x7EC3;&#x6B63;&#x786E;&#x7684;&#x6837;&#x672C; T=1 &#x9519;&#x8BEF;&#x7684;&#x6837;&#x672C;&#x662F;-1;sum(W)&#x8868;&#x793A;&#x4E0A;&#x4E00;&#x8F6E;&#x7684;&#x6743;&#x91CD;&#x4E4B;&#x548C;  &#x6B63;&#x4F8B;&#x6743;&#x503C;&#x5927;&#xFF0C;&#x8D1F;&#x4F8B;&#x6743;&#x503C;&#x5C0F;(&#x6837;&#x4F8B;&#x7684;&#x6743;&#x91CD;&#xFF0C;&#x53EA;&#x770B;&#x5206;&#x5B50;&#x90E8;&#x5206;&#xFF0C;&#x968F;&#x7740;alpha&#x53D8;&#x5316;&#xFF0C;&#x6B63;&#x4F8B;&#x5728;0-1&#x9012;&#x51CF;&#xFF0C;&#x8D1F;&#x4F8B;&gt;1&#x9012;&#x589E;)&#x7684;&#x7D2F;&#x52A0;&#x7ED3;&#x679C;&#x7684;&#x9519;&#x8BEF;&#x7387; </p>
+</blockquote>
+<blockquote>
+<p>&#x5355;&#x4E2A;&#x5206;&#x7C7B;&#x5668;&#x7684;&#x7ED3;&#x679C;P = alpha*P<br> &#x6700;&#x7EC8;&#x7684;&#x9884;&#x6D4B;&#x7ED3;&#x679C;&#x4E3A; P = alpha1*p1 + alpha2*p2 +alpha3*p3 +&#x2026;+alpha_n*pn,&#x518D;&#x5BF9;P&#x53D6;&#x7B26;&#x53F7;&#x5C31;&#x5F97;&#x9884;&#x6D4B;&#x7ED3;&#x679C;P = sign(P) </p>
+</blockquote>
+<h1 id="&#x4EE3;&#x7801;"><a href="#&#x4EE3;&#x7801;" class="headerlink" title="&#x4EE3;&#x7801;"></a>&#x4EE3;&#x7801;</h1><blockquote>
+<p>&#x52A0;&#x8F7D;&#x6570;&#x636E;&#x96C6;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np </span><br><span class="line"></span><br><span class="line">def loadData(filepath,split_char = &apos;\t&apos;,floats = False):</span><br><span class="line">    # &#x52A0;&#x8F7D;&#x6570;&#x636E;&#x96C6;</span><br><span class="line">    dataSet = []</span><br><span class="line">    with open(filepath) as file:</span><br><span class="line">        for line in file.readlines():</span><br><span class="line">            currline = line.strip().split(split_char)# &#x53BB;&#x524D;&#x540E;&#x7A7A;&#x683C; &#x8F6C;&#x6570;&#x7EC4;</span><br><span class="line">            fltLine = []</span><br><span class="line">            for i in currline:</span><br><span class="line">                if floats:</span><br><span class="line">                    fltLine.append(float(i))</span><br><span class="line">                else:</span><br><span class="line">                    fltLine.append(i)</span><br><span class="line">            dataSet.append(fltLine)</span><br><span class="line">    return dataSet</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>&#x6839;&#x636E;&#x5207;&#x5206;&#x70B9;&#x5F97;&#x5230;&#x9884;&#x6D4B;&#x7684;&#x7ED3;&#x679C;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">def stumpClassify(dataSet,thresh,index,value,ctype =0):</span><br><span class="line">    # &#x9884;&#x6D4B;</span><br><span class="line">    P = np.ones((dataSet.shape[0],1))</span><br><span class="line">    # &#x5C0F;&#x4E8E;value&#x7684;&#x9884;&#x6D4B;&#x4E3A;-1&#xFF0C;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;&#x7684;&#x9884;&#x6D4B;&#x4E3A;1</span><br><span class="line">    if thresh == &apos;&lt;&apos;:</span><br><span class="line">        P[dataSet[:,index] &lt; value] = -1</span><br><span class="line">    else:</span><br><span class="line">        P[dataSet[:,index] &gt;= value] = -1</span><br><span class="line">    return P</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>&#x57FA;&#x5206;&#x7C7B;&#x5668;&#xFF0C;&#x635F;&#x5931;&#x662F;&#x6837;&#x672C;&#x52A0;&#x6743;&#x635F;&#x5931;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">def adaBaseClassifier(dataSet,W,labelIndex=-1,ctype = 0):</span><br><span class="line">    # &#x57FA;&#x672C;&#x5206;&#x7C7B;&#x5668; - &#x4E8C;&#x5206;&#x7C7B;</span><br><span class="line">    # dataSet &#x6570;&#x636E;&#x96C6; &#x5305;&#x542B;&#x6570;&#x636E;&#x548C;&#x6807;&#x7B7E; np.array</span><br><span class="line">    # W &#x6BCF;&#x884C;&#x6570;&#x636E;&#x7684;&#x6743;&#x91CD;&#xFF0C;&#x521D;&#x59CB;&#x4E3A; 1/len(dataSet) &#x5217;&#x5411;&#x91CF; np.array</span><br><span class="line">    # labelIndex &#x6807;&#x7B7E;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x4E00;&#x822C;&#x4E3A;&#x6700;&#x540E;&#x4E00;&#x4F4D;</span><br><span class="line">    # ctype = 0 &#xFF1A;&#x6570;&#x503C;&#x7C7B;&#x578B;  &#x5206;&#x7C7B;&#x5C06;&#x6839;&#x636E;&#x5C0F;&#x4E8E;&#x548C;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;&#x8FDB;&#x884C;&#x5212;&#x5206; </span><br><span class="line">    # ctype = 1 &#xFF1A;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#xFF0C;&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x6570;&#x5B57;&#x5747;&#x53EF;  &#x5206;&#x7C7B;&#x5C06;&#x6839;&#x636E;&#x7B49;&#x4E8E;&#x4E0E;&#x4E0D;&#x7B49;&#x4E8E;&#x8FDB;&#x884C;&#x5212;&#x5206; &#x672A;&#x5B9E;&#x73B0;</span><br><span class="line">    m,n = np.shape(dataSet) # m &#x6837;&#x672C;&#x7684;&#x6570;&#x91CF; n &#x7279;&#x5F81;&#x7EF4;&#x5EA6;+1 &#xFF08;1 &#x662F;&#x6807;&#x7B7E;&#xFF09;</span><br><span class="line">    # print(&apos;W:&apos;,W)</span><br><span class="line">    # &#x904D;&#x5386;&#x7279;&#x5F81;</span><br><span class="line">    minLoss = np.inf</span><br><span class="line">    bestIndex = 0</span><br><span class="line">    bestVal = 0</span><br><span class="line">    bestP = []</span><br><span class="line">    bestthresh = &apos;&apos;</span><br><span class="line">    for index in range(n-2):</span><br><span class="line">        # &#x904D;&#x5386;&#x7279;&#x5F81;&#x5BF9;&#x5E94;&#x7684;&#x503C;</span><br><span class="line">        for value in dataSet[:,index]:</span><br><span class="line">            # &#x6837;&#x672C;&#x6570;&#x91CF;&#x7684;&#x5217;&#x5411;&#x91CF;,&#x5B58;&#x50A8;&#x9884;&#x6D4B;&#x7ED3;&#x679C;</span><br><span class="line">            for thresh in [&apos;&lt;&apos;,&apos;&gt;=&apos;]:</span><br><span class="line">                P = stumpClassify(dataSet,thresh,index,value,ctype =0)</span><br><span class="line">                Q = np.ones(P.shape)</span><br><span class="line">                # print(&apos;P:\n&apos;,P)</span><br><span class="line">                Q[P == dataSet[:,labelIndex][:,np.newaxis]] = 0</span><br><span class="line">                # print(&apos;Q:\n&apos;,Q)</span><br><span class="line">                # print(W*Q)</span><br><span class="line">                totalLoss = np.sum(W*Q)</span><br><span class="line">                # print(&apos;loss is &apos;,totalLoss)</span><br><span class="line">                if totalLoss &lt; minLoss:</span><br><span class="line">                    minLoss = totalLoss</span><br><span class="line">                    bestIndex = index</span><br><span class="line">                    bestVal = value</span><br><span class="line">                    bestP = P</span><br><span class="line">                    bestthresh = thresh</span><br><span class="line">    # print(&quot;minLoss,bestIndex,thresh,bestVal,bestP:\n&quot;,minLoss,bestIndex,bestthresh,bestVal,bestP)</span><br><span class="line">    return minLoss,bestIndex,bestthresh,bestVal,bestP</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>adaBoost &#x4E3B;&#x4F53;&#x90E8;&#x5206;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">def adaBoost(dataSet,maxIter=20,minErr = 0,ctype=0,labelIndex = -1,baseClassifier = adaBaseClassifier):</span><br><span class="line">    M = dataSet.shape[0] # &#x6837;&#x672C;&#x6570;&#x91CF;</span><br><span class="line">    W = np.array([1/M]*M)# &#x6BCF;&#x4E2A;&#x6837;&#x672C;&#x5BF9;&#x635F;&#x5931;&#x7684;&#x6743;&#x91CD;&#xFF0C;&#x521D;&#x59CB;&#x90FD;&#x4E00;&#x6837;</span><br><span class="line">    W = W[:,np.newaxis]</span><br><span class="line">    # print(&apos;W:\n&apos;,W)</span><br><span class="line">    classifiers = []</span><br><span class="line">    predictVal = np.zeros((M,1))</span><br><span class="line">    for i in range(maxIter):</span><br><span class="line">        minLoss,bestIndex,thresh,bestVal,bestP = baseClassifier(dataSet,W)</span><br><span class="line">        # print(&apos;minloss:\n&apos;,minLoss)</span><br><span class="line">        alpha = 1/2*(np.log((1-minLoss)/(minLoss+1e-10)))</span><br><span class="line">        if alpha == np.inf or alpha == -np.inf:</span><br><span class="line">            alpha = 10</span><br><span class="line">        # print(&apos;alpha:\n&apos;,alpha)</span><br><span class="line">        # print(&apos;bestP:\n&apos;,bestP)</span><br><span class="line">        # print(&apos;label:\n&apos;,dataSet[:,labelIndex])</span><br><span class="line">        W = W*np.exp(-1.0*alpha*bestP*dataSet[:,labelIndex][:,np.newaxis])/np.sum(W)</span><br><span class="line">        # print(&quot;W:&quot;,W.T)</span><br><span class="line">        classifier = {}</span><br><span class="line">        classifier[&apos;index&apos;] = bestIndex</span><br><span class="line">        classifier[&apos;value&apos;] = bestVal</span><br><span class="line">        classifier[&apos;thresh&apos;] = thresh</span><br><span class="line">        classifier[&apos;alpha&apos;] = alpha</span><br><span class="line">        classifiers.append(classifier)</span><br><span class="line">        predictVal +=alpha * bestP</span><br><span class="line">        # print(predictVal)</span><br><span class="line">        err = np.sign(predictVal)!=dataSet[:,labelIndex][:,np.newaxis]</span><br><span class="line">        err = err.sum()/M</span><br><span class="line">        print(&quot;iter is {},err is{} &quot;.format(i,err))</span><br><span class="line">        if err&lt;=minErr:</span><br><span class="line">            break</span><br><span class="line">    # print(&quot;train pre is \n&quot;,predictVal)</span><br><span class="line">    return classifiers</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>&#x5F97;&#x5230;&#x5206;&#x7C7B;&#x5668;&#x540E;&#x9884;&#x6D4B;&#x7ED3;&#x679C;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def adaboostPredict(dataSet_test,classifiers):</span><br><span class="line">    print(&quot;============================&quot;)</span><br><span class="line">    M = dataSet_test.shape[0]</span><br><span class="line">    predictVal = np.zeros((M,1))</span><br><span class="line">    for classifier in classifiers:</span><br><span class="line">        P = stumpClassify(dataSet_test,classifier[&apos;thresh&apos;],classifier[&apos;index&apos;],classifier[&apos;value&apos;],ctype =0)</span><br><span class="line">        # print(&quot;thresh:\n&quot;,classifier[&apos;thresh&apos;])</span><br><span class="line">        # print(&quot;index:\n&quot;,classifier[&apos;index&apos;])</span><br><span class="line">        # print(&quot;alpha:\n&quot;,classifier[&apos;alpha&apos;])</span><br><span class="line">        # print(&quot;value:\n&quot;,classifier[&apos;value&apos;])</span><br><span class="line">        # print(&quot;P:\n&quot;,P)</span><br><span class="line">        predictVal +=classifier[&apos;alpha&apos;] * P</span><br><span class="line">    # print(&quot;predictVal \n&quot;,predictVal)</span><br><span class="line">    err = np.sign(predictVal)!=dataSet[:,-1][:,np.newaxis]</span><br><span class="line">    err = err.sum()/M</span><br><span class="line">    print(&quot;predict err is :&quot;,err)</span><br><span class="line">    return np.sign(predictVal)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>&#x6D4B;&#x8BD5;&#x6837;&#x4F8B;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">def simple_dataSet(simple = 0):</span><br><span class="line">    if simple == 0:</span><br><span class="line"></span><br><span class="line">        data = [</span><br><span class="line">            [ 1.0 ,2.1,1.0],</span><br><span class="line">            [ 2.0 ,1.1,1.0],</span><br><span class="line">            [ 1.3 ,1.0,-1.0],</span><br><span class="line">            [ 1.0 ,1.0,-1.0],</span><br><span class="line">            [ 2.0 ,1.0,1.0]</span><br><span class="line">        ]</span><br><span class="line">    elif simple ==1:</span><br><span class="line">        data = [</span><br><span class="line">        [1,0,1],</span><br><span class="line">        [2,1,1],</span><br><span class="line">        [3,2,1],</span><br><span class="line">        [4,3,-1],</span><br><span class="line">        [5,4,-1],</span><br><span class="line">        [6,5,-1],</span><br><span class="line">        [7,6,1],</span><br><span class="line">        [8,7,1],</span><br><span class="line">        [9,8,1],</span><br><span class="line">        [10,9,-1],</span><br><span class="line">        ]</span><br><span class="line">    else:</span><br><span class="line">        pass</span><br><span class="line">    return np.array(data)</span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    # dataSet = simple_dataSet(1)</span><br><span class="line">    # classifliers = adaBoost(dataSet)</span><br><span class="line">    # pre = adaboostPredict(dataSet,classifliers)</span><br><span class="line"> </span><br><span class="line">    dataSet = loadData(&apos;horseColicTraining2.txt&apos;,split_char = &apos;\t&apos;,floats = True)</span><br><span class="line">    dataSet = np.array(dataSet)</span><br><span class="line">    classifliers = adaBoost(dataSet,maxIter=200)</span><br><span class="line">    pre = adaboostPredict(dataSet,classifliers)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/blog/tags/adaboost/" rel="tag"># adaboost</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/08/13/基础算法练习/机器学习/机器学习知识点/" rel="next" title="机器学习知识点">
+                <i class="fa fa-chevron-left"></i> 机器学习知识点
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2019/08/13/基础算法练习/机器学习/boost/boost/" rel="prev" title="boost 提升树">
+                boost 提升树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzNy8xNjQ2NA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">猫先生</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#个人理解"><span class="nav-number">1.</span> <span class="nav-text">个人理解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫先生</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
